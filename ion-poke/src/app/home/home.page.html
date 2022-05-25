@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title> Pokemon </ion-title>
+    <ion-button fill="clear" color="dark" routerLink="/listpokemon">
+      <ion-icon name="apps-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-searchbar
+      placeholder="Search pokemon"
+      (ionChange)="onSearchChange($event)"
+      animated="true"
+    ></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-list *ngIf="pokemon.length === 0">
+    <ion-item *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label class="ion-text-capitalize">
+        <h2>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h2>
+        <p>
+          <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item *ngFor="let poke of pokemon;" [routerLink]="poke.pokeIndex">
+      <ion-avatar slot="start">
+        <img [src]="poke.image" style="background: #f2f2f2" />
+      </ion-avatar>
+      <ion-label class="ion-text-capitalize">
+        <h2>{{ poke.name }}</h2>
+        <p>#{{ poke.pokeIndex }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadPokemon(true, $event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more Pokemon..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "ion-poke",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
