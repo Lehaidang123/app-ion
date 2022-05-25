@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button fill="clear" color="dark" routerLink="/home">
-      <ion-icon name="backspace-outline"></ion-icon>
+    <ion-button fill="clear" color="dark" routerLink="/container">
+      <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-button>
     <ion-title>Listpokemon</ion-title>
   </ion-toolbar>
@@ -33,7 +33,7 @@
           size-xl="3"
           size-md="6"
           size-xs="12"
-          *ngFor=" let p of pokemonDetail | filter: Filter"
+          *ngFor=" let p of pokemonDetails | filter: Filter"
         >
           <ion-card>
             <img [src]="p.sprites.front_default" />

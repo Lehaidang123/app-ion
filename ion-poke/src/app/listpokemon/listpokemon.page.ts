@@ -12,14 +12,14 @@ import { IonInfiniteScroll } from '@ionic/angular';
 })
 export class ListpokemonPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  poketmon: any = [];
+  poketmons: any = [];
   numTimesLeft = 4;
   isDesktop = false;
   offset = 0;
   limmit=20;
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Filter: string;
-  pokemonDetail: any=[];
+  pokemonDetails: any=[];
   constructor( private pokemonserviceService: PokemonService,
     private platform: Platform) { }
 
@@ -29,16 +29,16 @@ export class ListpokemonPage implements OnInit {
 
   getPokemons() {
     this.pokemonserviceService.getAllPokemon(this.offset,this.limmit).subscribe((res: any) => {
-      this.poketmon = res.results;
+      this.poketmons = res.results;
 
       this.getPoketmondetail();
     });
   }
   getPoketmondetail() {
-    for (const item of this.poketmon) {
+    for (const item of this.poketmons) {
       if (true) {
         this.pokemonserviceService.getPokemon1(item.name).subscribe((res) => {
-          this.pokemonDetail.push(res);
+          this.pokemonDetails.push(res);
 
         });
       }
@@ -48,7 +48,7 @@ export class ListpokemonPage implements OnInit {
   loadMore()
   {
     this.pokemonserviceService.getAllPokemon1((this.offset+=20),this.limmit).subscribe((res: any) => {
-      this.poketmon = res.results;
+      this.poketmons = res.results;
 
       this.getPoketmondetail();
     });
