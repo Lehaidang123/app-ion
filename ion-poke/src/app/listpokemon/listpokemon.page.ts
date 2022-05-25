@@ -55,7 +55,7 @@ export class ListpokemonPage implements OnInit {
   }
   loadData(event) {
     setTimeout(() => {
-      console.log('Done');
+
      this.loadMore();
       this.numTimesLeft -= 1;
       event.target.complete();
